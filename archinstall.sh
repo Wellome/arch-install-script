@@ -80,9 +80,9 @@ desktopEnvironment(){
 }
 
 desktopEnviromentExt(){
-    if [ ${DESKTOP_CHOICE} == "plasma-desktop konsole" ]; then
+    if [[ ${DESKTOP_CHOICE} == "plasma-desktop konsole" ]]; then
         read -p "Would you like to install extra packages? This will take longer, and will take up more storage. [y/n] " EXTRA_PACKAGES
-        if [ ${EXTRA_PACKAGES} == "y"|"Y" ]; then
+        if [[ ${EXTRA_PACKAGES} == "y" ]]; then
             echo "Extra packages will be installed."
             DESKTOP_CHOICE="${DESKTOP_CHOICE} kde-applications-meta"
 
@@ -91,9 +91,9 @@ desktopEnviromentExt(){
         fi
     fi
 
-    if [ ${DESKTOP_CHOICE} == "gnome gnome-terminal" ]; then
+    if [[ ${DESKTOP_CHOICE} == "gnome gnome-terminal" ]]; then
         read -p "Would you like to install extra packages? This will take longer, and will take up more storage. [y/n] " EXTRA_PACKAGES
-        if [${EXTRA_PACKAGES} == "y"|"Y" ]; then
+        if [[ ${EXTRA_PACKAGES} == "y" ]]; then
             echo "Extra packages will be installed."
             DESKTOP_CHOICE="${DESKTOP_CHOICE} gnome-extra"
 
@@ -102,9 +102,9 @@ desktopEnviromentExt(){
         fi
     fi
 
-    if [ ${DESKTOP_CHOICE} == "hyprland kitty" ]; then
+    if [[ ${DESKTOP_CHOICE} == "hyprland kitty" ]]; then
         read -p "Would you like to install Hyprpaper, Hyprlock and Wofi? This may take longer and will take up more storage. [y/n] " EXTRA_PACKAGES
-        if [ ${EXTRA_PACKAGES} == "y"|"Y" ]; then
+        if [[ ${EXTRA_PACKAGES} == "y" ]]; then
             echo "Hyprpaper, Hyprlock and Wofi will be installed. Note: You will need to configure these for yourself."
             DESKTOP_CHOICE="${DESKTOP_CHOICE} hyprpaper wofi hyprlock"
 
@@ -126,19 +126,6 @@ getUserDetails(){
         LOCALE="en_US.UTF-8 UTF-8"
     fi
 }
-
-
-## Installing all packages
-installPackages(){
-    echo "About to install packages."
-    ALLPACKAGES="linux linux-firmware sof-firmware base base-devel ${CPU_UCODE} ${DESKTOP_CHOICE} networkmanager sddm nano man-db firefox grub efibootmgr"
-    
-    echo "This may take a while."
-
-    pacstrap /mnt ${ALLPACKAGES}
-
-}
-
 ## Partition
 formatDisk(){
     read -p "Please select a disk to install this to. If you are unsure, please run lsblk outside of this script. " DISK
@@ -208,7 +195,7 @@ until formatDisk; do : ; done
 mkdir /mnt/etc/fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
-until installPackages; do : ; done
+pacstrap -K /mnt linux linux-firmware sof-firmware base base-devel networkmanager sddm nano man-db firefox grub efibootmgr ${CPU_UCODE} ${DESKTOP_ENVIRONMENT}
 
 sed -i "/^#$locale/s/^#//" /mnt/etc/locale.gen
 echo "LANG=$locale" > /mnt/etc/locale.conf
