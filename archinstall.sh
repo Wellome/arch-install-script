@@ -76,7 +76,7 @@ desktopEnviromentExt(){
         else
             echo "Extra packages will not be installed. You can install these later."
         fi
-        
+    fi
 
     if [ ${DESKTOP_CHOICE} == "gnome gnome-terminal" ]; then
         read -p "Would you like to install extra packages? This will take longer, and will take up more storage. [y/n] " EXTRA_PACKAGES
@@ -87,7 +87,8 @@ desktopEnviromentExt(){
         else
             echo "Extra packages will not be installed. You can install these later."
         fi
-
+    fi
+    
     if [ ${DESKTOP_CHOICE} == "hyprland kitty" ]; then
         read -p "Would you like to install Hyprpaper, Hyprlock and Wofi? This may take longer and will take up more storage. [y/n] " EXTRA_PACKAGES
         if [ ${EXTRA_PACKAGES} == "y"|"Y" ]; then
