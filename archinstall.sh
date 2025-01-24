@@ -1,15 +1,16 @@
 #!/bin/bash/
+
 clear
 
 # Commands
 getCPUArchitecture(){
     if ! grep --quiet 'Intel' /proc/cpuinfo; then
-        CPU_UCODE = "amd-ucode"
+        CPU_UCODE="amd-ucode"
         return
     fi
 
     if grep --quiet 'Intel' /proc/cpuinfo; then
-        CPU_UCODE = "intel-ucode"
+        CPU_UCODE="intel-ucode"
         return
     fi
 }
@@ -60,16 +61,16 @@ desktopEnvironment(){
     echo "4) i3 - Similar to Hyprland, however, I recommend this *less* than Hyprland. Note: Will also install xterm."
     read -p "Please choose one (i.e., 1 for KDE): " DESKTOP_CHOICE
     case $DESKTOP_CHOICE in
-        1 ) DESKTOP_ENVIRONMENT = "plasma-desktop konsole"
+        1 ) DESKTOP_ENVIRONMENT="plasma-desktop konsole"
             return 0;;
 
-        2 ) DESKTOP_ENVIRONMENT = "gnome gnome-terminal"
+        2 ) DESKTOP_ENVIRONMENT="gnome gnome-terminal"
             return 0;;
 
-        3 ) DESKTOP_ENVIRONMENT = "hyprland kitty"
+        3 ) DESKTOP_ENVIRONMENT="hyprland kitty"
             return 0;;
 
-        4 ) DESKTOP_ENVIRONMENT = "i3-wm xterm"
+        4 ) DESKTOP_ENVIRONMENT="i3-wm xterm"
             return 0;;
 
         * ) echo "You did not select a valid environment, please try again."
@@ -83,7 +84,7 @@ desktopEnviromentExt(){
         read -p "Would you like to install extra packages? This will take longer, and will take up more storage. [y/n] " EXTRA_PACKAGES
         if [ ${EXTRA_PACKAGES} == "y"|"Y" ]; then
             echo "Extra packages will be installed."
-            DESKTOP_CHOICE = "${DESKTOP_CHOICE} kde-applications-meta"
+            DESKTOP_CHOICE="${DESKTOP_CHOICE} kde-applications-meta"
 
         else
             echo "Extra packages will not be installed. You can install these later."
@@ -94,7 +95,7 @@ desktopEnviromentExt(){
         read -p "Would you like to install extra packages? This will take longer, and will take up more storage. [y/n] " EXTRA_PACKAGES
         if [${EXTRA_PACKAGES} == "y"|"Y" ]; then
             echo "Extra packages will be installed."
-            DESKTOP_CHOICE = "${DESKTOP_CHOICE} gnome-extra"
+            DESKTOP_CHOICE="${DESKTOP_CHOICE} gnome-extra"
 
         else
             echo "Extra packages will not be installed. You can install these later."
@@ -105,7 +106,7 @@ desktopEnviromentExt(){
         read -p "Would you like to install Hyprpaper, Hyprlock and Wofi? This may take longer and will take up more storage. [y/n] " EXTRA_PACKAGES
         if [ ${EXTRA_PACKAGES} == "y"|"Y" ]; then
             echo "Hyprpaper, Hyprlock and Wofi will be installed. Note: You will need to configure these for yourself."
-            DESKTOP_CHOICE = "${DESKTOP_CHOICE} hyprpaper wofi hyprlock"
+            DESKTOP_CHOICE="${DESKTOP_CHOICE} hyprpaper wofi hyprlock"
 
         else   
             echo "Extra packages will not be installed. You can install these later."
@@ -149,9 +150,9 @@ formatDisk(){
         exit 0
     fi
 
-    EFI_BOOT_PARTITION = "${DISK}1"
-    SWAP_PARTITION = "${DISK}2"
-    ROOT_PARTITION = "${DISK}3"
+    EFI_BOOT_PARTITION="${DISK}1"
+    SWAP_PARTITION="${DISK}2"
+    ROOT_PARTITION="${DISK}3"
 
     sgdisk -og ${DISK}
 
