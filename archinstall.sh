@@ -237,6 +237,7 @@ echo "Be sure to run the 'nmtui' command once you have logged in if you have wif
 until rootPassword; do : ; done
 
 echo ${ROOT_PASSWORD} | arch-chroot /mnt chpasswd 
+echo "If this fails, arch-chroot into the system and run passwd to set it manually."
 
 if [[ -n "$username" ]]; then
     echo "%wheel ALL=(ALL:ALL) ALL" > /mnt/etc/sudoers.d/wheel
