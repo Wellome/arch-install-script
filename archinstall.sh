@@ -145,7 +145,7 @@ formatDisk(){
     echo "WARNING! THIS WILL ERASE ALL DATA ON ${DISK}!"
     read -p "Do you wish to continue? [y/n] " WARNING_CONFIRMATION
 
-    if [ ${WARNING_CONFIRMATION} == "n"|"N" ]; then
+    if [[ ${WARNING_CONFIRMATION} == "n" ]]; then
         echo "Understood."
         exit 0
     fi
