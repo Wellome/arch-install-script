@@ -5,12 +5,12 @@ clear
 # Commands
 getCPUArchitecture(){
     if ! grep --quiet 'Intel' /proc/cpuinfo; then
-        CPU_UCODE="amd-ucode"
+        CPU_UCODE=$"amd-ucode"
         return
     fi
 
     if grep --quiet 'Intel' /proc/cpuinfo; then
-        CPU_UCODE="intel-ucode"
+        CPU_UCODE=$"intel-ucode"
         return
     fi
 }
@@ -150,9 +150,9 @@ formatDisk(){
         exit 0
     fi
 
-    EFI_BOOT_PARTITION="${DISK}1"
-    SWAP_PARTITION="${DISK}2"
-    ROOT_PARTITION="${DISK}3"
+    EFI_BOOT_PARTITION=$"${DISK}1"
+    SWAP_PARTITION=$"${DISK}2"
+    ROOT_PARTITION=$"${DISK}3"
 
     sgdisk -og ${DISK}
 
