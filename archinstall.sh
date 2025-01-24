@@ -8,7 +8,10 @@ getCPUArchitecture(){
         return
     fi
 
-    CPU_UCODE = "intel-ucode"
+    if grep --quiet 'Intel' /proc/cpuinfo; then
+        CPU_UCODE = "intel-ucode"
+        return
+    fi
 }
 
 createUser(){
