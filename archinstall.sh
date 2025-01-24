@@ -233,6 +233,8 @@ systemctl enable NetworkManager
 systemctl enable sddm
 echo "Be sure to run the 'nmtui' command once you have logged in if you have wifi."
 
+until rootPassword; do : ; done
+
 echo ${ROOT_PASSWORD} | arch-chroot /mnt chpasswd 
 
 if [[ -n "$username" ]]; then
