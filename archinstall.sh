@@ -183,8 +183,6 @@ formatDisk(){
     swapon ${SWAP_PARTITION}
 
     echo "All partitions are now mounted."
-
-    genfstab -U /mnt >> /mnt/etc/fstab
 }
 
 # Install process.
@@ -206,6 +204,9 @@ until desktopEnvironment; do : ; done
 until desktopEnviromentExt; do : ; done
 
 until formatDisk; do : ; done
+
+mkdir /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 
 until installPackages; do : ; done
 
