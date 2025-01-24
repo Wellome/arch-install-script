@@ -118,12 +118,12 @@ desktopEnviromentExt(){
 getUserDetails(){
     read -p "Please choose a hostname for this computer. " HOSTNAME
     if [[ -z ${HOSTNAME} ]]; then
-        HOSTNAME = "IUseArchBTW"
+        HOSTNAME="IUseArchBTW"
     fi
 
     read -p "Please enter locale, or, leave blank for en_US.UTF-8 UTF-8. " LOCALE
     if [[ -z ${LOCALE} ]]; then
-        LOCALE = "en_US.UTF-8 UTF-8"
+        LOCALE="en_US.UTF-8 UTF-8"
     fi
 }
 
@@ -131,7 +131,7 @@ getUserDetails(){
 ## Installing all packages
 installPackages(){
     echo "About to install packages."
-    ALLPACKAGES = "linux linux-firmware sof-firmware base base-devel ${CPU_UCODE} ${DESKTOP_CHOICE} networkmanager sddm nano man-db firefox grub efibootmgr"
+    ALLPACKAGES="linux linux-firmware sof-firmware base base-devel ${CPU_UCODE} ${DESKTOP_CHOICE} networkmanager sddm nano man-db firefox grub efibootmgr"
     
     echo "This may take a while."
 
