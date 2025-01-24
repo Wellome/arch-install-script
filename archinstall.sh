@@ -1,5 +1,4 @@
 #!/bin/bash/
-
 clear
 
 # Commands
@@ -23,6 +22,11 @@ createUser(){
             continue
         fi
 
+        if [ ${USER_PASSWORD} == ${USER_PASSWORD_CONFIRM} ]; then
+            echo "Root password set."
+            break
+        fi
+
         done
 }
 
@@ -33,6 +37,11 @@ rootPassword(){
         if [ ${ROOT_PASSWORD} != ${ROOT_PASSWORD_CONFIRM} ]; then
             echo "The passwords did not match up. Please try again."
             continue
+        fi
+
+        if [ ${ROOT_PASSWORD} == ${ROOT_PASSWORD_CONFIRM} ]; then
+            echo "Root password set."
+            break
         fi
 
         done
@@ -88,7 +97,7 @@ desktopEnviromentExt(){
             echo "Extra packages will not be installed. You can install these later."
         fi
     fi
-    
+
     if [ ${DESKTOP_CHOICE} == "hyprland kitty" ]; then
         read -p "Would you like to install Hyprpaper, Hyprlock and Wofi? This may take longer and will take up more storage. [y/n] " EXTRA_PACKAGES
         if [ ${EXTRA_PACKAGES} == "y"|"Y" ]; then
