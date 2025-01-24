@@ -23,7 +23,7 @@ createUser(){
             continue
         fi
 
-        break
+        done
 }
 
 rootPassword(){
@@ -35,7 +35,7 @@ rootPassword(){
             continue
         fi
 
-        break
+        done
 
 }
 
